@@ -3,7 +3,7 @@ namespace :git do
   task :revision do
     on roles :app do
       within release_path do
-        revision = capture("cd #{repo_path} && git rev-parse HEAD")
+        revision = capture("cd #{repo_path} && git rev-parse #{fetch(:branch)}")
         execute(:echo, "#{revision} > REVISION")
       end
     end
